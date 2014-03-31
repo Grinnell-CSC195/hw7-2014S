@@ -1,0 +1,101 @@
+<html>
+	<head>
+		<title>mitchell17 Canvas</title>
+
+		<script>
+		function updateCanvas (){
+			var c = document.getElementById("myCanvas");
+			var ctx = c.getContext("2d");
+			var red = document.getElementById("redvalue").value;
+			var green = document.getElementById("greenvalue").value;
+			var blue = document.getElementById("bluevalue").value;
+			var color = "rgb("+ red + "," + green + ","+ blue + ")";
+			document.getElementById("redtext").innerHTML = red;
+			document.getElementById("greentext").innerHTML = green;
+			document.getElementById("bluetext").innerHTML = blue;
+			document.getElementById("hexvalue").innerHTML = "#"+toHex(red)+toHex(green)+toHex(blue);
+
+			// Create gradient
+			var xfocal = document.getElementById("focalpointx").innerHTML;
+			var yfocal = document.getElementById("focalpointy").innerHTML;
+			var grd = ctx.createRadialGradient(xfocal, yfocal, 10, 100, 100, 100);
+			grd.addColorStop(0,color);
+			grd.addColorStop(1,"black");
+
+			// Fill with gradient
+			ctx.fillStyle = grd;
+			ctx.fillRect(0,0,200,200);
+		} //updateCanvas ()
+
+		function toHex(n) {
+ 			n = parseInt(n,10);
+ 			if (isNaN(n)) return "00";
+			n = Math.max(0,Math.min(n,255));
+ 			return "0123456789ABCDEF".charAt((n-n%16)/16)
+      			+ "0123456789ABCDEF".charAt(n%16);
+		} //toHex(n) (www.javascripter.net/faq/rgbtohex.htm)
+
+		function updateSlider (input, color){
+			if (color == "red"){
+				document.getElementById("redvalue").value = input;
+				updateCanvas();
+			}
+			else if (color == "blue"){
+				document.getElementById("bluevalue").value = input;
+				updateCanvas();
+			}
+			else if (color == "green"){
+				document.getElementById("greenvalue").value = input;
+				updateCanvas();
+			}
+		} //updateSlider
+
+		function parseHex (hex) {
+
+		var h = hex.innerHTML;
+		h = (h.charAt(0)=="#") ? h.substring(1,7) : h;
+
+			var red = parseInt(h.substring(0,2),16);
+			var green = parseInt(h.substring(2,4),16);
+			var blue = parseInt(h.substring(4,6),16);
+
+			updateSlider(red, "red");
+			updateSlider(green, "green");
+			updateSlider(blue, "blue");
+
+		} //parseHex (hex) (http://www.javascripter.net/faq/hextorgb.htm)
+
+		function canvasClicked (event){
+			var x = event.x;
+  			var y = event.y;
+
+ 			var canvas = document.getElementById("myCanvas");
+
+ 			x -= canvas.offsetLeft;
+  			y -= canvas.offsetTop;
+
+			document.getElementById("focalpointx").innerHTML = x;
+			document.getElementById("focalpointy").innerHTML = y;
+			updateCanvas();
+		} //canvasClicked (event) (http://miloq.blogspot.com/2011/05/coordinates-mouse-click-canvas.html)
+		</script>
+	</head>
+	<body onLoad='updateCanvas()'>
+		<center>
+
+		<canvas id="myCanvas" width="200" height="200" style="border:1px solid #000000;" onclick='canvasClicked(event)'></canvas>
+
+		<form>
+		<br />
+		Red:&nbsp&nbsp&nbsp <input id='redvalue' type="range" min="0" max="255" value="255" onchange='updateCanvas()' />
+		<span id='redtext' contenteditable="true" onblur= 'updateSlider(this.innerHTML, "red")'></span><br />
+		Green: <input id='greenvalue' type="range" min="0" max="255" value="255" onchange='updateCanvas()' />
+		<span id='greentext' contenteditable="true" onblur= 'updateSlider(this.innerHTML, "green")' ></span><br />
+		Blue:&nbsp&nbsp <input id='bluevalue' type="range" min="0" max="255" value="255" onchange='updateCanvas()' />
+		<span id='bluetext' contenteditable="true" onblur= 'updateSlider(this.innerHTML, "blue")'></span><br />
+		<span id='hexvalue' contenteditable="true" onblur= 'parseHex(this)'></span><br />
+		<span id='focalpointx'>100</span> <span id='focalpointy'>20</span>
+		</form>
+		</center>
+	</body>
+</html>
