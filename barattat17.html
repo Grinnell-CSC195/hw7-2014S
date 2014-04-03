@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Toby's Canvas</title>
+    <script>
+
+        function createColors() {
+            var red = Math.floor((Math.random() - 1) * -255);
+            var green = Math.floor((Math.random() - 1) * -255);
+            var blue = Math.floor((Math.random() - 1) * -255);
+            return rgbToHex(red, green, blue);
+        }
+
+        /*  The following two functions nabbed from:
+         http://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb */
+        function componentToHex(c) {
+            var hex = c.toString(16);
+            return hex.length == 1 ? "0" + hex : hex;
+        }
+
+        function rgbToHex(r, g, b) {
+            return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+        }
+
+        /* Getting coordinates done by:
+         http://www.html5canvastutorials.com/advanced/html5-canvas-transform-rotate-tutorial/
+         */
+        window.addEventListener("load", doStuff, true);
+        function doStuff(e) {
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+
+            canvas.addEventListener("mousedown", Pentagrams, false);
+
+            function Pentagrams(event) {
+                var x = event.x;
+                var y = event.y;
+
+                x -= canvas.offsetLeft;
+                y -= canvas.offsetTop;
+                context.beginPath();
+                context.moveTo(x, y);
+                context.lineTo(x + 50, y);
+                context.lineTo(x + 10, y - 30);
+                context.lineTo(x + 25, y + 20);
+                context.lineTo(x + 40, y - 30);
+                context.lineTo(x - 1, y);
+                context.strokeStyle = createColors();
+                context.lineWidth = 2;
+                context.stroke();
+
+            }
+        }
+
+    </script>
+</head>
+<body>
+<h1>Click to worship Satan.</h1>
+<canvas id="canvas" width="900" height="600"></canvas>
+</body>
+</html>
