@@ -7,3 +7,4 @@ Links to Canvases (in Alphabetical Order)
              (replaced my heading with a canvas)
  ~ mitchell17: http://www.cs.grinnell.edu/~mitchell17/canvas/
  ~ wolterzo  : http://www.cs.grinnell.edu/~wolterzo/canvasfun.html 
+ ~ zahidmuh17: http://www.cs.grinnell.edu/~zahidmuh17/TriangleCanvas.html

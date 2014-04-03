@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Samee's Canvas</title>
+  </head>
+    <center>
+    <p id = "instructions" style="font-family: sans-serif;
+font-size: 80%;" margin-bottom="30px" > Instructions: Using lines, make as many triangles as you can in 10 seconds! First click defines starting point, and second click defines your end point. Drawing a triangle will earn you 1 point. However, you earn 2 points for drawing a perfect triangle. Click on start to begin the countdown.</p>
+<center/>
+
+<button id = "startButton" type="button" style="width: 70px;height:20px;margin-top:10px; margin-left:-100px;"  onclick="timer()">Start!</button>
+    <button type="button" style="width: 70px;height:20px; margin-top:10px;margin-left:50px; position:absolute;" onclick="location.reload()">Reset</button>
+    <center>
+    <p id = "timer" style="font-family: sans-serif;
+font-size: 150%;" margin-bottom="30px" > Timer </p>
+    
+   
+    <canvas id="myCanvas" width="500" height="450" style="border:7px solid #000000;" onClick='getPosition(event)'></canvas>
+
+ 
+
+    <h1 id = "heading2"></h1>
+
+    </center>
+    <script>
+
+    var count = 0;
+    var movesX = new Array();
+    var movesY = new Array();
+    var canv = document.getElementById("myCanvas");
+    var context = canv.getContext("2d");
+    var color = '#76EE00';
+    var successCount = 0;
+    context.fillStyle = "#000000";
+    context.fillRect(0,0,500,500);
+
+
+    function timer () {
+
+        count = 0;
+        var seconds_left = 11;
+        var interval = setInterval(function() {
+        document.getElementById('timer').innerHTML = --seconds_left;
+
+        if (seconds_left <= 0)
+        {   
+            document.getElementById('timer').innerHTML = "0";
+            document.getElementById('heading2').innerHTML = "Game over! \n Score = " + successCount;
+            canv.onclick=null;
+            document.getElementById('startButton').onclick = null;
+
+        }
+    }, 1000);
+
+        //clear canvas
+        canv.width = canv.width;
+        //clear score
+        successCount = 0;
+
+        document.getElementById('heading2').innerHTML = "";
+
+      context.fillStyle = "#000000";
+    context.fillRect(0,0,500,500);
+
+
+
+      }
+
+
+    function makeLines1(x,y){
+
+      context.beginPath();
+      context.moveTo(x,y);
+
+
+    }
+
+    function makeLines2(x,y){
+
+
+    context.lineTo(x,y);
+    context.lineWidth = 6;
+
+    context.strokeStyle = color;
+    context.stroke();
+
+
+    }
+
+
+    function shapeChecker(){
+
+      var posx1 = Math.abs(movesX[5] - movesX[0]);
+      var posx2 = Math.abs(movesX[1] - movesX[2]);
+      var posx3 = Math.abs(movesX[3] - movesX[4]);
+      var posy1 = Math.abs(movesY[5] - movesY[0]);
+      var posy2 = Math.abs(movesY[1] - movesY[2]);
+      var posy3 = Math.abs(movesY[3] - movesY[4]);
+      var sum = posx1 + posx2 + posx3 + posy1 + posy2 + posy3;
+
+    if (sum < 35 && sum >= 15){
+      successCount++;
+      document.getElementById('heading2').innerHTML = "That was average! + 1\n Score = " + successCount;
+    } 
+
+    else if (sum < 15){   
+      successCount++;
+      successCount++;
+      document.getElementById('heading2').innerHTML = "That was perfect! + 2\n Score = " + successCount;
+    } 
+
+    else {
+       document.getElementById('heading2').innerHTML = "That was poor! No points!\n Score = " + successCount;
+    }
+
+
+
+
+    }
+
+    function reset (){
+      var i = 0;
+      for (i = 0; i < movesX.length - 1; i++){
+
+        movesX[i] = 0;
+
+      }
+
+      for (i = 0; i < movesY.length - 1; i++){
+
+        movesY[i] = 0;
+
+      }
+
+
+    }
+
+
+
+
+
+function getPosition(event)
+{
+  
+  x = event.x;
+  y = event.y;
+
+
+  var canvas = document.getElementById("myCanvas");
+
+  x -= canvas.offsetLeft;
+  y -= canvas.offsetTop;
+
+
+if (count % 2 == 0){
+
+  movesX[count] = x;
+  movesY[count] = y;
+  makeLines1(x,y);
+
+
+}
+
+else {
+  movesX[count] = x;
+  movesY[count] = y;
+  makeLines2(x,y);
+
+  //alert("x[" + (count-1) + "]=" + movesX[count-1] + "and x["+ count + "]=" + movesX[count]);
+}
+
+
+  //alert("x:" + x + " y:" + y + (window.myValue));
+  count++;
+
+  if (count == 6) {
+    shapeChecker();
+    reset();
+    count = 0;
+
+    //Random color generator. Credits Paul Irish. http://www.paulirish.com/2009/random-hex-color-code-snippets/
+    color = '#'+Math.floor(Math.random()*16777215).toString(16);
+
+
+  }
+}
+    </script>
+
+    
+  </body>
+</html>
