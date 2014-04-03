@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" onMouseDown=myFunction(event) width="500" height="750">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+var width = 500;
+var height = 750;
+
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ctx.fillStyle = "white";
+ctx.fillRect(0,0,width,height);
+
+function myFunction(e)
+{
+	ctx.clearRect(0, 0, width, height);
+	for (var i = 0; i < 10; i++)
+	{
+		var x = Math.random() * width;
+		var y = Math.random() * height;
+		var radius = Math.random() * 100;
+		var r = Math.random() * 200;
+		var g = Math.random() * 200;
+		var b = Math.random() * 200;
+		//http://stackoverflow.com/questions/5092808/how-do-i-randomly-generate-html-hex-color-codes-using-javascript
+		ctx.fillStyle = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
+		ctx.beginPath();
+		ctx.arc(x, y, radius, 0, 2*Math.PI);
+		ctx.closePath();
+		ctx.fill();
+	}
+}
+
+</script>
+
+</body>
+</html>
