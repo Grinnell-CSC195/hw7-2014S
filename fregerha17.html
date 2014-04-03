@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+    <script>
+
+      var mouse = {
+      x: -1,
+      y: -1
+      };
+
+      $(document).ready(function(){
+      var cvs = $("canvas")[0].getContext("2d");
+      $("canvas").click(function(e){
+      if(mouse.x != -1 && mouse.y != -1){
+      cvs.beginPath();
+      cvs.moveTo(mouse.x, mouse.y);
+      cvs.lineTo(e.pageX, e.pageY);
+      cvs.closePath();
+      cvs.lineWidth = 10;
+      cvs.stroke();
+      mouse.x = -1;
+      mouse.y = -1;
+      }else{
+      mouse.x = e.pageX;
+      mouse.y = e.pageY;
+      }
+      });
+      });
+    </script>
+  </head>
+  <body>
+    <img id="hair" src="hair2.jpg" alt="hair" width="500" height="500">
+
+    <canvas id="myCanvas" width="1060" height="800" style="border: 1px
+                                                           solid #000">
+      
+    </canvas>
+
+    <script>
+      var canvas = document.getElementById("myCanvas");
+      var context = canvas.getContext("2d");
+      var img=document.getElementById("hair");
+      context.drawImage(img, 10, 10);
+
+      var c=document.getElementById("myCanvas");
+      var ctx=c.getContext("2d");
+      ctx.font="30px Arial";
+      ctx.fillText("Click twice to draw hairs.",10,50);
+
+      var c=document.getElementById("myCanvas");
+      var ctx=c.getContext("2d");
+      ctx.font="30px Arial";
+      ctx.fillText("Draw in this white space",10,90);
+
+      var c=document.getElementById("myCanvas");
+      var ctx=c.getContext("2d");
+      ctx.font="30px Arial";
+      ctx.fillText("to pin the facial hair on the artist!",10,130);
+
+    </script>
+  </body>
+</html>
+
+<!--The drawing lines code is based on the code found at
+    http://stackoverflow.com/questions/11404266/draw-a-line-with-two-mouse-clicks-in-canvas-using-jquery
+    It uses Jquery because my attempts to draw lines with two clicks were
+    unsuccessful when I tried an alternate method that didn't use Jquery-->
