@@ -4,6 +4,7 @@ Links to Canvases (in Alphabetical Order)
  ~ fregerha17 : http://www.cs.grinnell.edu/~fregerha17/canvas.html (zoom out and make sure jquery isn't blocked)  
  ~ hallmira : http://www.cs.grinnell.edu/~hallmira/Bubbles.html  
  ~ hansosne17 : http://www.cs.grinnell.edu/~hansonse17/canvas/  
+ ~ kittaneh17 : http://www.cs.grinnell.edu/~kittaneh17/canvas.html
  ~ kyaruzia17: http://www.cs.grinnell.edu/~kyaruzia17/Ajuna_Ky.html (replaced my heading with a canvas)  
  ~ mitchell17: http://www.cs.grinnell.edu/~mitchell17/canvas/  
  ~ mulhalle: http://www.cs.grinnell.edu/~mulhalle/hotcold.html  
