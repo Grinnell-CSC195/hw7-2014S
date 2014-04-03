@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Linda's Canvas</title>
+  </head>
+    
+<script>
+ var c=document.getElementById('myCanvas');
+ var ctx=canvas.getContext('2d');
+ 
+ /*Thanks to http://www.html5canvastutorials.com/ for shadowShear and getMouse*/
+ 
+
+   function getMousePos(canvas, evt) {
+  var rect = canvas.getBoundingClientRect();
+  return {
+      x: evt.clientX - rect.left,
+      y: evt.clientY - rect.top
+        };
+   }
+   
+ function shadowShear(){
+   var rectWidth = x;
+   var rectHeight = y;
+   // translate context to center of canvas
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      // rotate 45 degrees clockwise
+      ctx.rotate(Math.PI / 4);
+      ctx.fillStyle = 'blue';
+      ctx.shadowColor = '#999';
+      ctx.shadowBlur = 20;
+      ctx.shadowOffsetX = 15;
+      ctx.shadowOffsetY = 15;
+      ctx.fillRect(rectWidth / -2, rectHeight / -2, rectWidth, rectHeight);
+
+ }
+ 
+
+</script>
+
+<center>
+<canvas id="myCanvas"></canvas>
+</center>
+  </body>
+</html>
