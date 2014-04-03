@@ -3,3 +3,4 @@ Links to Canvases (in Alphabetical Order)
  ~ creaseyw  : http://www.cs.grinnell.edu/~creaseyw/example.html
              (scroll down: warning, lame)
  ~ mitchell17: http://www.cs.grinnell.edu/~mitchell17/canvas/
+ ~ wolterzo  : http://www.cs.grinnell.edu/~wolterzo/canvasfun.html 
