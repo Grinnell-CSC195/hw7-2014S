@@ -7,3 +7,4 @@ Links to Canvases (in Alphabetical Order)
  ~ mulhalle: http://www.cs.grinnell.edu/~mulhalle/hotcold.html   
  ~ wolterzo  : http://www.cs.grinnell.edu/~wolterzo/canvasfun.html   
  ~ zahidmuh17: http://www.cs.grinnell.edu/~zahidmuh17/TriangleCanvas.html  
+ ~ schlager  : http://www.cs.grinnell.edu/~schlager/schlager-canvas.html
