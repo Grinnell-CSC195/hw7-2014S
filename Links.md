@@ -9,3 +9,4 @@ Links to Canvases (in Alphabetical Order)
  ~ wolterzo  : http://www.cs.grinnell.edu/~wolterzo/canvasfun.html   
  ~ zahidmuh17: http://www.cs.grinnell.edu/~zahidmuh17/TriangleCanvas.html  
  ~ schlager  : http://www.cs.grinnell.edu/~schlager/schlager-canvas.html
+ ~ hallmira  : http://www.cs.grinnell.edu/~hallmira/Bubbles.html
