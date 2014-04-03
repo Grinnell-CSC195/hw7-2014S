@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Unwrap the Rapper</title>
+<link rel="stylesheet" type="text/css" href="http://www.cs.grinnell.edu/~hansonse17/main/stylesheet.css"/>
+</head>
+
+
+
+<body> 
+
+<h3>Unwrap the Rapper</h3>
+
+<canvas id="vast" width="1000" height="1000" style="border:1px solid #000000;">
+
+
+<script>
+var canvas = document.getElementById("vast") ;
+var ctx = canvas.getContext("2d") ;
+
+var background = new Image();
+background.src =
+"baby.jpg" ;
+ctx.drawImage(background,0,0,1000,1000);
+
+var img = new Image();
+img.src =
+"pac.jpg" ;
+var grd = ctx.createLinearGradient(20, 20, 1000, 1000) ;
+grd.addColorStop(0, "#520066") ;
+grd.addColorStop(0.7, "#007A29") ;
+grd.addColorStop(1, "#2424B2") ;
+
+
+var pat = ctx.createPattern(img, "repeat");
+ctx.rect(200,200,400,400);
+ctx.fillStyle=pat;
+
+
+canvas.onmousedown = handleMouseDown ;
+convas.onmouseup = handleMouseUp ;
+
+function handleMouseDown(event)
+{
+canvas.onmousemove = handleMouseMove ;
+}
+
+function handleMouseMove(event)
+{
+var bounds = canvas.getBoundingClientRect();
+ctx.fillRect(event.pageX-bounds.left, event.pageY-bounds.top, 20, 20);
+}
+
+function handleMouseUp(event)
+{
+canvas.onmousemove = null;
+}
+
+</script>
+
+
+
+
+</canvas>
+
+
+Images used:
+http://theblackuniversity.com/wp-content/uploads/2013/09/2pac-7.jpg
+<br>
+https://f0.bcbits.com/img/a2249832434_10.jpg
+</body>
