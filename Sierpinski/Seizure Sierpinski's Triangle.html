@@ -1,0 +1,106 @@
+<html>
+<head>
+<title>Sierpinski's Triangle</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500"></canvas>
+<script>
+document.body.onmousedown = function(){
+ document.body.onmousemove = function(event){
+  canvas.width = Math.max(event.pageX - canvas.offsetLeft,event.pageY - canvas.offsetTop);
+  canvas.height = canvas.width;
+  update()
+ }
+}
+document.body.onmouseup = function(){
+ document.body.onmousemove = function(){
+  {}
+ }
+ update()
+}
+document.body.onkeydown = function(event){
+ if(event.which==39)
+ {
+  divs++;
+  update();
+ }
+ if(event.which==37 && divs>=1)
+ {
+  divs--;
+  update();
+ }
+}
+divs = 0;
+canvas = document.getElementById("canvas");
+ctx = canvas.getContext("2d");
+function update()
+{
+ ctx.fillStyle="white";
+ ctx.fillRect(0,0,canvas.width,canvas.height);
+ firstTriangle();
+ var currentTriangles = [[[0, canvas.height],[canvas.width/2, 0],[canvas.width, canvas.height]]];
+ for(var counter=0; counter<divs; counter++)
+ {
+  var tempTriangles = [];
+  for(var triangle in currentTriangles)
+  {
+   toPush = subdivide(currentTriangles[triangle])
+   for(var pusher in toPush)
+   {
+    tempTriangles.push(toPush[pusher])
+   }
+  }
+  currentTriangles = tempTriangles;
+ }
+}
+function firstTriangle()
+{
+ ctx.beginPath();
+ ctx.moveTo(0, canvas.height);
+ ctx.lineTo(canvas.width/2, 0);
+ ctx.lineTo(canvas.width, canvas.height);
+ ctx.lineTo(0, canvas.height);
+ ctx.closePath();
+ ctx.fillStyle = random();
+ ctx.fill();
+}
+function subdivide(row)
+{
+ ctx.beginPath();
+ ctx.moveTo(avg(row[0][0],row[1][0]), avg(row[0][1],row[1][1]));
+ ctx.lineTo(avg(row[2][0],row[1][0]), avg(row[2][1],row[1][1]));
+ ctx.lineTo(avg(row[0][0], row[2][0]), row[0][1]);
+ ctx.lineTo(avg(row[0][0],row[1][0]), avg(row[0][1],row[1][1]));
+ ctx.closePath();
+ ctx.fillStyle = random();
+ ctx.fill();
+ var topTri = [
+ [avg(row[0][0],row[1][0]), avg(row[0][1],row[1][1])],
+ row[1],
+ [avg(row[2][0],row[1][0]), avg(row[2][1],row[1][1])]
+ ]
+ var leftTri = [
+ row[0],
+ [avg(row[0][0],row[1][0]), avg(row[0][1],row[1][1])],
+ [avg(row[0][0], row[2][0]), row[0][1]]
+ ]
+ var rightTri = [
+ [avg(row[0][0], row[2][0]), row[0][1]],
+ [avg(row[2][0],row[1][0]), avg(row[2][1],row[1][1])],
+ row[2]
+ ]
+ return([topTri, leftTri, rightTri])
+}
+function avg(a, b)
+{
+ return Math.round((a+b)/2);
+}
+function random()
+{
+ return "rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
+}
+update();
+setInterval(update,10);
+</script>
+</body>
+</html>
