@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lets Display a colorthing!!</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+  </head>
+
+  <body>
+
+<p>Color Name:
+ <input type="text" id="color">
+<button onclick="colorchange()">Try it</button>
+</p>
+<br>
+<br>
+    <canvas id="theMessiahs" width="610" height="610"
+            style=" border:1px solid #000000;">
+      Your Browser Dont do it like it meant to be done.
+    </canvas>
+<script>
+function colorchange(){
+var c=document.getElementById("theMessiahs");
+var ctx=c.getContext("2d");
+var color= document.getElementById("color").value;
+for (var i=0;i<=255;i++)
+{
+for(var j=0;j<255;j++){
+ctx.fillStyle=color;
+ctx.fillRect(3*i,3*j,2,2);
+}
+}
+}
+</script>
+    
+  </body>
+</html>
